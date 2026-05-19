@@ -12,13 +12,16 @@
     box-sizing:border-box;
 }
 
+html,body{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+}
+
 body{
     font-family:'Quicksand',sans-serif;
-    height:100vh;
-    overflow:hidden;
     position:relative;
 
-    /* ✔️ ORYGINALNE TŁO – BEZ ŻADNEGO ZDJĘCIA */
     background: linear-gradient(
         135deg,
         #fff0f5 0%,
@@ -103,6 +106,7 @@ body{
     transform:translate(-50%,-50%);
     text-align:center;
     z-index:5;
+    width:90%;
 }
 
 .center-text h1{
@@ -159,6 +163,7 @@ body{
     padding:40px;
     border-radius:30px;
     max-width:500px;
+    width:90%;
     margin:20px;
     text-align:center;
     box-shadow:0 20px 60px rgba(255,105,180,0.5);
@@ -210,6 +215,7 @@ body{
     border-radius:20px;
     box-shadow:0 10px 25px rgba(255,105,180,0.3);
     overflow:hidden;
+    flex-shrink:0;
 }
 
 .photo img{
@@ -217,6 +223,7 @@ body{
     height:100%;
     object-fit:cover;
     border-radius:12px;
+    display:block;
 }
 
 .small{
@@ -252,8 +259,12 @@ body{
 /* TELEFONY */
 @media(max-width:900px){
 
-    body{
+    html,body{
         overflow-y:auto;
+    }
+
+    body{
+        min-height:100vh;
         padding-bottom:40px;
     }
 
@@ -294,13 +305,11 @@ body{
 
 <body>
 
-<!-- RAMKI -->
 <div class="border-line-top"></div>
 <div class="border-line-bottom"></div>
 <div class="border-line-left"></div>
 <div class="border-line-right"></div>
 
-<!-- SERCA -->
 <div class="bg-hearts">
     <div class="heart" style="top:10%;left:15%;">💖</div>
     <div class="heart" style="top:20%;right:20%;">💕</div>
@@ -309,20 +318,17 @@ body{
     <div class="heart" style="top:50%;left:45%;">💘</div>
 </div>
 
-<!-- KOKARDKI -->
 <div class="ribbon r1">🎀</div>
 <div class="ribbon r2">🎀</div>
 <div class="ribbon r3">🎀</div>
 <div class="ribbon r4">🎀</div>
 
-<!-- TEKST -->
 <div class="center-text">
     <h1>🎂 Happy Birthday 🎂</h1>
     <h2>Raika & Ragi 💖</h2>
     <button class="wishes-btn" onclick="openWishes()">✨ Kliknij po życzenia ✨</button>
 </div>
 
-<!-- ZDJĘCIA -->
 <div class="photo p1"><img src="vx.png"></div>
 <div class="photo p2"><img src="kr.jpg"></div>
 <div class="photo p3"><img src="ka1.png"></div>
@@ -335,7 +341,6 @@ body{
 <div class="photo small s3"><img src="r1.png"></div>
 <div class="photo small s4"><img src="r2.png"></div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="wishesModal" onclick="closeWishes(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
         <h2>🎉 Życzenia 🎉</h2>
