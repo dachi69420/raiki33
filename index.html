@@ -15,11 +15,12 @@
 html,body{
     width:100%;
     height:100%;
-    overflow:hidden;
 }
 
 body{
     font-family:'Quicksand',sans-serif;
+    height:100vh;
+    overflow:hidden;
     position:relative;
 
     background: linear-gradient(
@@ -106,7 +107,7 @@ body{
     transform:translate(-50%,-50%);
     text-align:center;
     z-index:5;
-    width:90%;
+    white-space:nowrap;
 }
 
 .center-text h1{
@@ -114,12 +115,14 @@ body{
     font-size:4rem;
     color:#ff4fa0;
     text-shadow:3px 3px 10px rgba(255,255,255,0.7);
+    line-height:1.1;
 }
 
 .center-text h2{
     margin-top:10px;
     font-size:2rem;
     color:#d63384;
+    line-height:1.2;
 }
 
 .wishes-btn{
@@ -163,7 +166,6 @@ body{
     padding:40px;
     border-radius:30px;
     max-width:500px;
-    width:90%;
     margin:20px;
     text-align:center;
     box-shadow:0 20px 60px rgba(255,105,180,0.5);
@@ -215,7 +217,6 @@ body{
     border-radius:20px;
     box-shadow:0 10px 25px rgba(255,105,180,0.3);
     overflow:hidden;
-    flex-shrink:0;
 }
 
 .photo img{
@@ -259,17 +260,23 @@ body{
 /* TELEFONY */
 @media(max-width:900px){
 
-    html,body{
-        overflow-y:auto;
-    }
-
     body{
-        min-height:100vh;
+        overflow-y:auto;
         padding-bottom:40px;
     }
 
-    .center-text h1{font-size:2.4rem;}
-    .center-text h2{font-size:1.3rem;}
+    .center-text{
+        white-space:normal;
+        width:90%;
+    }
+
+    .center-text h1{
+        font-size:2.4rem;
+    }
+
+    .center-text h2{
+        font-size:1.3rem;
+    }
 
     .photo{
         width:120px;
