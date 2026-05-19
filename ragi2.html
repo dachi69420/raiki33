@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Quicksand',sans-serif;
+    height:100vh;
+    overflow:hidden;
+    position:relative;
+
+    /* ✔️ ORYGINALNE TŁO – BEZ ŻADNEGO ZDJĘCIA */
+    background: linear-gradient(
+        135deg,
+        #fff0f5 0%,
+        #ffd1dc 25%,
+        #ffb6c1 50%,
+        #ffc0cb 75%,
+        #ffe4e9 100%
+    );
+}
+
+/* RAMKI */
+.border-line-top{
+    position:absolute;
+    top:20px;
+    left:60px;
+    right:60px;
+    height:8px;
+    border-radius:10px;
+    background:linear-gradient(to right,#ff69b4,#ffc0db,#ff69b4);
+    z-index:2;
+}
+
+.border-line-bottom{
+    position:absolute;
+    bottom:20px;
+    left:60px;
+    right:60px;
+    height:8px;
+    border-radius:10px;
+    background:linear-gradient(to right,#ff69b4,#ffc0db,#ff69b4);
+    z-index:2;
+}
+
+.border-line-left{
+    position:absolute;
+    top:60px;
+    bottom:60px;
+    left:20px;
+    width:8px;
+    border-radius:10px;
+    background:linear-gradient(to bottom,#ff69b4,#ffc0db,#ff69b4);
+    z-index:2;
+}
+
+.border-line-right{
+    position:absolute;
+    top:60px;
+    bottom:60px;
+    right:20px;
+    width:8px;
+    border-radius:10px;
+    background:linear-gradient(to bottom,#ff69b4,#ffc0db,#ff69b4);
+    z-index:2;
+}
+
+/* SERCA */
+.bg-hearts{
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    z-index:0;
+}
+
+.heart{
+    position:absolute;
+    font-size:30px;
+    opacity:0.4;
+    animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0px);}
+    50%{transform:translateY(-20px);}
+}
+
+/* TEKST */
+.center-text{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:5;
+}
+
+.center-text h1{
+    font-family:'Pacifico',cursive;
+    font-size:4rem;
+    color:#ff4fa0;
+    text-shadow:3px 3px 10px rgba(255,255,255,0.7);
+}
+
+.center-text h2{
+    margin-top:10px;
+    font-size:2rem;
+    color:#d63384;
+}
+
+.wishes-btn{
+    margin-top:25px;
+    padding:15px 35px;
+    font-size:1.2rem;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(135deg,#ff69b4,#ff1493,#ff69b4);
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(255,105,180,0.4);
+    transition:all 0.3s ease;
+}
+
+.wishes-btn:hover{
+    transform:scale(1.08);
+}
+
+/* MODAL */
+.modal-overlay{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.5);
+    z-index:100;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-overlay.active{
+    display:flex;
+}
+
+.modal-content{
+    background:linear-gradient(135deg,#fff0f5,#ffd1dc,#ffb6c1);
+    padding:40px;
+    border-radius:30px;
+    max-width:500px;
+    margin:20px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(255,105,180,0.5);
+    animation:popIn 0.4s ease;
+}
+
+@keyframes popIn{
+    0%{transform:scale(0.5);opacity:0;}
+    100%{transform:scale(1);opacity:1;}
+}
+
+.modal-content h2{
+    font-family:'Pacifico',cursive;
+    font-size:2.5rem;
+    color:#ff1493;
+    margin-bottom:20px;
+}
+
+.modal-content p{
+    font-size:1.2rem;
+    color:#d63384;
+    line-height:1.8;
+    margin-bottom:25px;
+}
+
+.close-btn{
+    padding:12px 30px;
+    font-size:1rem;
+    font-weight:bold;
+    color:white;
+    background:linear-gradient(135deg,#ff69b4,#ff1493);
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    transition:all 0.3s ease;
+}
+
+.close-btn:hover{
+    transform:scale(1.05);
+}
+
+/* ZDJĘCIA */
+.photo{
+    position:absolute;
+    width:180px;
+    height:180px;
+    background:white;
+    padding:10px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(255,105,180,0.3);
+    overflow:hidden;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:12px;
+}
+
+.small{
+    width:110px;
+    height:110px;
+}
+
+/* POZYCJE */
+.p1{top:8%;left:7%;transform:rotate(-8deg);}
+.p2{top:15%;right:8%;transform:rotate(7deg);}
+.p3{bottom:12%;left:10%;transform:rotate(6deg);}
+.p4{bottom:10%;right:12%;transform:rotate(-7deg);}
+.p5{top:38%;left:2%;transform:rotate(-10deg);}
+.p6{top:38%;right:2%;transform:rotate(10deg);}
+
+.s1{top:5%;left:42%;transform:rotate(-8deg);}
+.s2{bottom:6%;right:42%;transform:rotate(8deg);}
+.s3{top:5%;right:30%;transform:rotate(5deg);}
+.s4{bottom:6%;left:30%;transform:rotate(-5deg);}
+
+/* KOKARDKI */
+.ribbon{
+    position:absolute;
+    font-size:45px;
+    opacity:0.6;
+}
+
+.r1{top:20px;left:20px;}
+.r2{top:20px;right:20px;}
+.r3{bottom:20px;left:20px;}
+.r4{bottom:20px;right:20px}
+
+/* TELEFONY */
+@media(max-width:900px){
+
+    body{
+        overflow-y:auto;
+        padding-bottom:40px;
+    }
+
+    .center-text h1{font-size:2.4rem;}
+    .center-text h2{font-size:1.3rem;}
+
+    .photo{
+        width:120px;
+        height:120px;
+    }
+
+    .small{
+        width:75px;
+        height:75px;
+    }
+
+    .p1{top:6%;left:4%;}
+    .p2{top:10%;right:4%;}
+    .p3{bottom:10%;left:6%;}
+    .p4{bottom:10%;right:6%;}
+    .p5{top:32%;left:2%;}
+    .p6{top:32%;right:2%;}
+
+    .s1{top:4%;left:38%;}
+    .s2{bottom:4%;right:38%;}
+    .s3{top:4%;right:26%;}
+    .s4{bottom:4%;left:26%;}
+
+    .modal-content{
+        padding:25px;
+    }
+
+    .modal-content h2{font-size:1.8rem;}
+    .modal-content p{font-size:1rem;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- RAMKI -->
+<div class="border-line-top"></div>
+<div class="border-line-bottom"></div>
+<div class="border-line-left"></div>
+<div class="border-line-right"></div>
+
+<!-- SERCA -->
+<div class="bg-hearts">
+    <div class="heart" style="top:10%;left:15%;">💖</div>
+    <div class="heart" style="top:20%;right:20%;">💕</div>
+    <div class="heart" style="bottom:20%;left:25%;">💗</div>
+    <div class="heart" style="bottom:15%;right:15%;">💞</div>
+    <div class="heart" style="top:50%;left:45%;">💘</div>
+</div>
+
+<!-- KOKARDKI -->
+<div class="ribbon r1">🎀</div>
+<div class="ribbon r2">🎀</div>
+<div class="ribbon r3">🎀</div>
+<div class="ribbon r4">🎀</div>
+
+<!-- TEKST -->
+<div class="center-text">
+    <h1>🎂 Happy Birthday 🎂</h1>
+    <h2>Raika & Ragi 💖</h2>
+    <button class="wishes-btn" onclick="openWishes()">✨ Kliknij po życzenia ✨</button>
+</div>
+
+<!-- ZDJĘCIA -->
+<div class="photo p1"><img src="zdjecie1.jpg"></div>
+<div class="photo p2"><img src="zdjecie2.jpg"></div>
+<div class="photo p3"><img src="zdjecie3.jpg"></div>
+<div class="photo p4"><img src="zdjecie4.jpg"></div>
+<div class="photo p5"><img src="zdjecie5.jpg"></div>
+<div class="photo p6"><img src="zdjecie6.jpg"></div>
+
+<div class="photo small s1"><img src="ra1.png"></div>
+<div class="photo small s2"><img src="ra2.png"></div>
+<div class="photo small s3"><img src="r1.png"></div>
+<div class="photo small s4"><img src="r2.png"></div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="wishesModal" onclick="closeWishes(event)">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h2>🎉 Życzenia 🎉</h2>
+        <p>
+            Drogie Raika i Ragi! 💕<br><br>
+            Z okazji Waszych urodzin życzymy Wam<br>
+            mnóstwa radości, szczęścia i miłości! 🌸<br><br>
+            Niech każdy dzień przynosi Wam uśmiech,<br>
+            a wszystkie marzenia się spełniają! ✨<br><br>
+            Sto lat! 🎂💖
+        </p>
+        <button class="close-btn" onclick="closeWishes(event)">Zamknij 💝</button>
+    </div>
+</div>
+
+<script>
+function openWishes(){
+    document.getElementById('wishesModal').classList.add('active');
+}
+
+function closeWishes(e){
+    if(e.target.classList.contains('modal-overlay') || e.target.classList.contains('close-btn')){
+        document.getElementById('wishesModal').classList.remove('active');
+    }
+}
+</script>
+
+<audio id="bgMusic" src="hpp.mp3" autoplay loop></audio>
+
+<script>
+document.addEventListener("click", function(){
+    const audio = document.getElementById("bgMusic");
+    if(audio.paused){
+        audio.play();
+    }
+});
+</script>
+
+</body>
+</html>
