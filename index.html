@@ -14,12 +14,11 @@
 
 body{
     font-family:'Quicksand',sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-    overflow-y:auto;
+    height:100vh;
+    overflow:hidden;
     position:relative;
-    padding:20px;
 
+    /* ✔️ ORYGINALNE TŁO – BEZ ŻADNEGO ZDJĘCIA */
     background: linear-gradient(
         135deg,
         #fff0f5 0%,
@@ -103,11 +102,7 @@ body{
     left:50%;
     transform:translate(-50%,-50%);
     text-align:center;
-    z-index:20;
-
-    width:90%;
-    max-width:500px;
-    padding:20px;
+    z-index:5;
 }
 
 .center-text h1{
@@ -215,7 +210,6 @@ body{
     border-radius:20px;
     box-shadow:0 10px 25px rgba(255,105,180,0.3);
     overflow:hidden;
-    z-index:5;
 }
 
 .photo img{
@@ -248,7 +242,6 @@ body{
     position:absolute;
     font-size:45px;
     opacity:0.6;
-    z-index:15;
 }
 
 .r1{top:20px;left:20px;}
@@ -334,6 +327,22 @@ body{
         font-size:38px;
     }
 }
+
+/* PASEK PRZEWIJANIA */
+.modal-content::-webkit-scrollbar{
+    width:8px;
+}
+
+.modal-content::-webkit-scrollbar-track{
+    background:#ffe4ef;
+    border-radius:10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb{
+    background:#ff69b4;
+    border-radius:10px;
+}
+
 </style>
 </head>
 
@@ -383,14 +392,22 @@ body{
 <!-- MODAL -->
 <div class="modal-overlay" id="wishesModal" onclick="closeWishes(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <h2>🎉 Życzenia 🎉</h2>
+        <h2>🎉 Życzenia dla Sigmy🎉</h2>
         <p>
-            Drogie Raika i Ragi! 💕<br><br>
-            Z okazji Waszych urodzin życzymy Wam
-            mnóstwa radości, szczęścia i miłości! 🌸<br><br>
-            Niech każdy dzień przynosi Wam uśmiech,
-            a wszystkie marzenia się spełniają! ✨<br><br>
-            Sto lat! 🎂💖
+            Droga Ragi! 💕<br><br>
+            Tak wiem, zapewne jesteś zła, przejdzie ci jak zawsze, ale kochamy cię dobrze o tym wiesz <33 <br>
+            Dziś twoje znienawidzone święto, ale mam nadzieję, że choć troszkę je polubisz niż dotychczas. <br>
+			Ja(Hiroshi) życzę tobie dużo kart Shu i Miki <br>
+			oraz kogokolwiek kogo tylko zechcesz.<br>
+			Laptopa bądź komputer byś mogła grać z nami w mc.🌸<br>
+            By twoje marzenia się spełniły oraz przede wszystkim zdrowia.<br>
+			Powiedziałabym jeszcze o twoim uśmiechu, ale on jak zawsze 
+			jest cudowny, patrząc na niego można odrazu zapomnieć o problemach.<br>
+			Mogłabym napisać więcej, ale jest za dużo do pisania tych rzeczy, zapewne i tak bym <br>
+			zapomniała wymienić najważniejszej rzeczy.<br><br> 
+            Bez pomocy dziewczyn chyba by mi się nie udało zrobić tej strony…<br> <br>
+            
+            Sto lat!! 🎂💖
         </p>
         <button class="close-btn" onclick="closeWishes(event)">Zamknij 💝</button>
     </div>
@@ -402,10 +419,7 @@ function openWishes(){
 }
 
 function closeWishes(e){
-    if(
-        e.target.classList.contains('modal-overlay') ||
-        e.target.classList.contains('close-btn')
-    ){
+    if(e.target.classList.contains('modal-overlay') || e.target.classList.contains('close-btn')){
         document.getElementById('wishesModal').classList.remove('active');
     }
 }
@@ -416,7 +430,6 @@ function closeWishes(e){
 <script>
 document.addEventListener("click", function(){
     const audio = document.getElementById("bgMusic");
-
     if(audio.paused){
         audio.play();
     }
@@ -425,3 +438,4 @@ document.addEventListener("click", function(){
 
 </body>
 </html>
+
