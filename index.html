@@ -14,11 +14,9 @@
 
 body{
     font-family:'Quicksand',sans-serif;
-    height:100vh;
-    overflow:hidden;
+    min-height:100vh;
+    overflow-x:hidden;
     position:relative;
-
-    /* ✔️ ORYGINALNE TŁO – BEZ ŻADNEGO ZDJĘCIA */
     background: linear-gradient(
         135deg,
         #fff0f5 0%,
@@ -31,7 +29,7 @@ body{
 
 /* RAMKI */
 .border-line-top{
-    position:absolute;
+    position:fixed;
     top:20px;
     left:60px;
     right:60px;
@@ -42,7 +40,7 @@ body{
 }
 
 .border-line-bottom{
-    position:absolute;
+    position:fixed;
     bottom:20px;
     left:60px;
     right:60px;
@@ -53,7 +51,7 @@ body{
 }
 
 .border-line-left{
-    position:absolute;
+    position:fixed;
     top:60px;
     bottom:60px;
     left:20px;
@@ -64,7 +62,7 @@ body{
 }
 
 .border-line-right{
-    position:absolute;
+    position:fixed;
     top:60px;
     bottom:60px;
     right:20px;
@@ -76,11 +74,12 @@ body{
 
 /* SERCA */
 .bg-hearts{
-    position:absolute;
+    position:fixed;
     width:100%;
     height:100%;
     overflow:hidden;
     z-index:0;
+    pointer-events:none;
 }
 
 .heart{
@@ -95,14 +94,42 @@ body{
     50%{transform:translateY(-20px);}
 }
 
+/* KONTENER GŁÓWNY */
+.main-container{
+    position:relative;
+    z-index:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    min-height:100vh;
+    padding:80px 40px;
+}
+
+/* ZDJĘCIA GÓRA */
+.photos-top{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:30px;
+    max-width:900px;
+}
+
+/* ZDJĘCIA DÓŁ */
+.photos-bottom{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    margin-top:30px;
+    max-width:900px;
+}
+
 /* TEKST */
 .center-text{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
     text-align:center;
     z-index:5;
+    padding:20px;
 }
 
 .center-text h1{
@@ -159,6 +186,8 @@ body{
     padding:40px;
     border-radius:30px;
     max-width:500px;
+    max-height:80vh;
+    overflow-y:auto;
     margin:20px;
     text-align:center;
     box-shadow:0 20px 60px rgba(255,105,180,0.5);
@@ -202,14 +231,14 @@ body{
 
 /* ZDJĘCIA */
 .photo{
-    position:absolute;
-    width:180px;
-    height:180px;
+    width:150px;
+    height:150px;
     background:white;
-    padding:10px;
+    padding:8px;
     border-radius:20px;
     box-shadow:0 10px 25px rgba(255,105,180,0.3);
     overflow:hidden;
+    flex-shrink:0;
 }
 
 .photo img{
@@ -219,116 +248,25 @@ body{
     border-radius:12px;
 }
 
-.small{
-    width:110px;
-    height:110px;
+.photo.small{
+    width:100px;
+    height:100px;
 }
-
-/* POZYCJE */
-.p1{top:8%;left:7%;transform:rotate(-8deg);}
-.p2{top:15%;right:8%;transform:rotate(7deg);}
-.p3{bottom:12%;left:10%;transform:rotate(6deg);}
-.p4{bottom:10%;right:12%;transform:rotate(-7deg);}
-.p5{top:38%;left:2%;transform:rotate(-10deg);}
-.p6{top:38%;right:2%;transform:rotate(10deg);}
-
-.s1{top:5%;left:42%;transform:rotate(-8deg);}
-.s2{bottom:6%;right:42%;transform:rotate(8deg);}
-.s3{top:5%;right:30%;transform:rotate(5deg);}
-.s4{bottom:6%;left:30%;transform:rotate(-5deg);}
 
 /* KOKARDKI */
 .ribbon{
-    position:absolute;
+    position:fixed;
     font-size:45px;
     opacity:0.6;
+    z-index:2;
 }
 
 .r1{top:20px;left:20px;}
 .r2{top:20px;right:20px;}
 .r3{bottom:20px;left:20px;}
-.r4{bottom:20px;right:20px}
+.r4{bottom:20px;right:20px;}
 
-/* TELEFONY */
-@media(max-width:900px){
-
-    body{
-        overflow-x:hidden;
-        overflow-y:auto;
-        padding:15px;
-    }
-
-    .center-text{
-        position:relative;
-        top:auto;
-        left:auto;
-        transform:none;
-        margin:180px auto 220px auto;
-    }
-
-    .center-text h1{
-        font-size:2.3rem;
-        line-height:1.2;
-    }
-
-    .center-text h2{
-        font-size:1.2rem;
-        margin-top:10px;
-    }
-
-    .wishes-btn{
-        font-size:1rem;
-        padding:14px 28px;
-    }
-
-    .photo{
-        width:105px;
-        height:105px;
-    }
-
-    .small{
-        width:70px;
-        height:70px;
-    }
-
-    /* GÓRA */
-    .p1{top:70px;left:10px;}
-    .p2{top:70px;right:10px;}
-
-    .s1{top:30px;left:38%;}
-    .s3{top:40px;right:25%;}
-
-    /* ŚRODEK */
-    .p5{top:320px;left:0;}
-    .p6{top:320px;right:0;}
-
-    /* DÓŁ */
-    .p3{bottom:70px;left:15px;}
-    .p4{bottom:70px;right:15px;}
-
-    .s4{bottom:30px;left:25%;}
-    .s2{bottom:30px;right:25%;}
-
-    .modal-content{
-        padding:22px;
-        width:90%;
-    }
-
-    .modal-content h2{
-        font-size:1.8rem;
-    }
-
-    .modal-content p{
-        font-size:1rem;
-        line-height:1.6;
-    }
-
-    .ribbon{
-        font-size:38px;
-    }
-}
-
-/* PASEK PRZEWIJANIA */
+/* PASEK PRZEWIJANIA MODAL */
 .modal-content::-webkit-scrollbar{
     width:8px;
 }
@@ -341,6 +279,97 @@ body{
 .modal-content::-webkit-scrollbar-thumb{
     background:#ff69b4;
     border-radius:10px;
+}
+
+/* TELEFONY */
+@media(max-width:768px){
+    .main-container{
+        padding:60px 20px;
+    }
+
+    .center-text h1{
+        font-size:2.2rem;
+        line-height:1.3;
+    }
+
+    .center-text h2{
+        font-size:1.2rem;
+        margin-top:8px;
+    }
+
+    .wishes-btn{
+        font-size:1rem;
+        padding:12px 25px;
+    }
+
+    .photo{
+        width:100px;
+        height:100px;
+        padding:6px;
+    }
+
+    .photo.small{
+        width:70px;
+        height:70px;
+    }
+
+    .photos-top,
+    .photos-bottom{
+        gap:10px;
+    }
+
+    .modal-content{
+        padding:25px;
+        width:90%;
+        max-height:75vh;
+    }
+
+    .modal-content h2{
+        font-size:1.6rem;
+    }
+
+    .modal-content p{
+        font-size:0.95rem;
+        line-height:1.6;
+    }
+
+    .ribbon{
+        font-size:30px;
+    }
+
+    .border-line-top,
+    .border-line-bottom{
+        left:30px;
+        right:30px;
+        height:6px;
+    }
+
+    .border-line-left,
+    .border-line-right{
+        top:30px;
+        bottom:30px;
+        width:6px;
+    }
+}
+
+@media(max-width:480px){
+    .center-text h1{
+        font-size:1.8rem;
+    }
+
+    .center-text h2{
+        font-size:1rem;
+    }
+
+    .photo{
+        width:80px;
+        height:80px;
+    }
+
+    .photo.small{
+        width:60px;
+        height:60px;
+    }
 }
 
 </style>
@@ -369,25 +398,35 @@ body{
 <div class="ribbon r3">🎀</div>
 <div class="ribbon r4">🎀</div>
 
-<!-- TEKST -->
-<div class="center-text">
-    <h1>🎂 Happy Birthday 🎂</h1>
-    <h2>Raika & Ragi 💖</h2>
-    <button class="wishes-btn" onclick="openWishes()">✨ Kliknij po życzenia ✨</button>
+<!-- KONTENER GŁÓWNY -->
+<div class="main-container">
+
+    <!-- ZDJĘCIA GÓRA -->
+    <div class="photos-top">
+        <div class="photo"><img src="vx.png" alt=""></div>
+        <div class="photo small"><img src="ra1.png" alt=""></div>
+        <div class="photo"><img src="kr.jpg" alt=""></div>
+        <div class="photo small"><img src="r1.png" alt=""></div>
+        <div class="photo"><img src="kr1.jpg" alt=""></div>
+    </div>
+
+    <!-- TEKST -->
+    <div class="center-text">
+        <h1>🎂 Happy Birthday 🎂</h1>
+        <h2>Raika & Ragi 💖</h2>
+        <button class="wishes-btn" onclick="openWishes()">✨ Kliknij po życzenia ✨</button>
+    </div>
+
+    <!-- ZDJĘCIA DÓŁ -->
+    <div class="photos-bottom">
+        <div class="photo"><img src="ka1.png" alt=""></div>
+        <div class="photo small"><img src="r2.png" alt=""></div>
+        <div class="photo"><img src="vx1.jpeg" alt=""></div>
+        <div class="photo small"><img src="ra2.png" alt=""></div>
+        <div class="photo"><img src="ka.jpg" alt=""></div>
+    </div>
+
 </div>
-
-<!-- ZDJĘCIA -->
-<div class="photo p1"><img src="vx.png"></div>
-<div class="photo p2"><img src="kr.jpg"></div>
-<div class="photo p3"><img src="ka1.png"></div>
-<div class="photo p4"><img src="vx1.jpeg"></div>
-<div class="photo p5"><img src="kr1.jpg"></div>
-<div class="photo p6"><img src="ka.jpg"></div>
-
-<div class="photo small s1"><img src="ra1.png"></div>
-<div class="photo small s2"><img src="ra2.png"></div>
-<div class="photo small s3"><img src="r1.png"></div>
-<div class="photo small s4"><img src="r2.png"></div>
 
 <!-- MODAL -->
 <div class="modal-overlay" id="wishesModal" onclick="closeWishes(event)">
@@ -395,17 +434,17 @@ body{
         <h2>🎉 Życzenia dla Sigmy🎉</h2>
         <p>
             Droga Ragi! 💕<br><br>
-            Tak wiem, zapewne jesteś zła, przejdzie ci jak zawsze, ale kochamy cię dobrze o tym wiesz <33 <br>
+            Tak wiem, zapewne jesteś zła, przejdzie ci jak zawsze, ale kochamy cię dobrze o tym wiesz &lt;33 <br>
             Dziś twoje znienawidzone święto, ale mam nadzieję, że choć troszkę je polubisz niż dotychczas. <br>
-			Ja(Hiroshi) życzę tobie dużo kart Shu i Miki <br>
-			oraz kogokolwiek kogo tylko zechcesz.<br>
-			Laptopa bądź komputer byś mogła grać z nami w mc.🌸<br>
+            Ja(Hiroshi) życzę tobie dużo kart Shu i Miki <br>
+            oraz kogokolwiek kogo tylko zechcesz.<br>
+            Laptopa bądź komputer byś mogła grać z nami w mc.🌸<br>
             By twoje marzenia się spełniły oraz przede wszystkim zdrowia.<br>
-			Powiedziałabym jeszcze o twoim uśmiechu, ale on jak zawsze 
-			jest cudowny, patrząc na niego można odrazu zapomnieć o problemach.<br>
-			Mogłabym napisać więcej, ale jest za dużo do pisania tych rzeczy, zapewne i tak bym <br>
-			zapomniała wymienić najważniejszej rzeczy.<br><br> 
-            Bez pomocy dziewczyn chyba by mi się nie udało zrobić tej strony…<br> <br>
+            Powiedziałabym jeszcze o twoim uśmiechu, ale on jak zawsze 
+            jest cudowny, patrząc na niego można odrazu zapomnieć o problemach.<br>
+            Mogłabym napisać więcej, ale jest za dużo do pisania tych rzeczy, zapewne i tak bym <br>
+            zapomniała wymienić najważniejszej rzeczy.<br><br> 
+            Bez pomocy dziewczyn chyba by mi się nie udało zrobić tej strony…<br><br>
             
             Sto lat!! 🎂💖
         </p>
@@ -438,4 +477,3 @@ document.addEventListener("click", function(){
 
 </body>
 </html>
-
