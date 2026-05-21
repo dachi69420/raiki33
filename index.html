@@ -12,16 +12,13 @@
     box-sizing:border-box;
 }
 
-html,body{
-    width:100%;
-    height:100%;
-}
-
 body{
     font-family:'Quicksand',sans-serif;
-    height:100vh;
-    overflow:hidden;
+    min-height:100vh;
+    overflow-x:hidden;
+    overflow-y:auto;
     position:relative;
+    padding:20px;
 
     background: linear-gradient(
         135deg,
@@ -106,24 +103,24 @@ body{
     left:50%;
     transform:translate(-50%,-50%);
     text-align:center;
-    z-index:5;
-    white-space:nowrap;
-    width:60%;
+    z-index:20;
+
+    width:90%;
+    max-width:500px;
+    padding:20px;
 }
 
 .center-text h1{
     font-family:'Pacifico',cursive;
-    font-size:3rem;
+    font-size:4rem;
     color:#ff4fa0;
     text-shadow:3px 3px 10px rgba(255,255,255,0.7);
-    line-height:1.1;
 }
 
 .center-text h2{
     margin-top:10px;
-    font-size:1.8rem;
+    font-size:2rem;
     color:#d63384;
-    line-height:1.2;
 }
 
 .wishes-btn{
@@ -211,13 +208,14 @@ body{
 /* ZDJĘCIA */
 .photo{
     position:absolute;
-    width:150px;
-    height:150px;
+    width:180px;
+    height:180px;
     background:white;
     padding:10px;
     border-radius:20px;
     box-shadow:0 10px 25px rgba(255,105,180,0.3);
     overflow:hidden;
+    z-index:5;
 }
 
 .photo img{
@@ -225,12 +223,11 @@ body{
     height:100%;
     object-fit:cover;
     border-radius:12px;
-    display:block;
 }
 
 .small{
-    width:100px;
-    height:100px;
+    width:110px;
+    height:110px;
 }
 
 /* POZYCJE */
@@ -238,8 +235,8 @@ body{
 .p2{top:15%;right:8%;transform:rotate(7deg);}
 .p3{bottom:12%;left:10%;transform:rotate(6deg);}
 .p4{bottom:10%;right:12%;transform:rotate(-7deg);}
-.p5{top:35%;left:1%;transform:rotate(-10deg);}
-.p6{top:35%;right:1%;transform:rotate(10deg);}
+.p5{top:38%;left:2%;transform:rotate(-10deg);}
+.p6{top:38%;right:2%;transform:rotate(10deg);}
 
 .s1{top:5%;left:42%;transform:rotate(-8deg);}
 .s2{bottom:6%;right:42%;transform:rotate(8deg);}
@@ -251,6 +248,7 @@ body{
     position:absolute;
     font-size:45px;
     opacity:0.6;
+    z-index:15;
 }
 
 .r1{top:20px;left:20px;}
@@ -259,45 +257,82 @@ body{
 .r4{bottom:20px;right:20px}
 
 /* TELEFONY */
-/* TELEFONY */
 @media(max-width:900px){
 
     body{
+        overflow-x:hidden;
         overflow-y:auto;
-        padding-bottom:40px;
+        padding:15px;
     }
 
-    .center-text h1{font-size:2.4rem;}
-    .center-text h2{font-size:1.3rem;}
+    .center-text{
+        position:relative;
+        top:auto;
+        left:auto;
+        transform:none;
+        margin:180px auto 220px auto;
+    }
+
+    .center-text h1{
+        font-size:2.3rem;
+        line-height:1.2;
+    }
+
+    .center-text h2{
+        font-size:1.2rem;
+        margin-top:10px;
+    }
+
+    .wishes-btn{
+        font-size:1rem;
+        padding:14px 28px;
+    }
 
     .photo{
-        width:120px;
-        height:120px;
+        width:105px;
+        height:105px;
     }
 
     .small{
-        width:75px;
-        height:75px;
+        width:70px;
+        height:70px;
     }
 
-    .p1{top:6%;left:4%;}
-    .p2{top:10%;right:4%;}
-    .p3{bottom:10%;left:6%;}
-    .p4{bottom:10%;right:6%;}
-    .p5{top:32%;left:2%;}
-    .p6{top:32%;right:2%;}
+    /* GÓRA */
+    .p1{top:70px;left:10px;}
+    .p2{top:70px;right:10px;}
 
-    .s1{top:4%;left:38%;}
-    .s2{bottom:4%;right:38%;}
-    .s3{top:4%;right:26%;}
-    .s4{bottom:4%;left:26%;}
+    .s1{top:30px;left:38%;}
+    .s3{top:40px;right:25%;}
+
+    /* ŚRODEK */
+    .p5{top:320px;left:0;}
+    .p6{top:320px;right:0;}
+
+    /* DÓŁ */
+    .p3{bottom:70px;left:15px;}
+    .p4{bottom:70px;right:15px;}
+
+    .s4{bottom:30px;left:25%;}
+    .s2{bottom:30px;right:25%;}
 
     .modal-content{
-        padding:25px;
+        padding:22px;
+        width:90%;
     }
 
-    .modal-content h2{font-size:1.8rem;}
-    .modal-content p{font-size:1rem;}
+    .modal-content h2{
+        font-size:1.8rem;
+    }
+
+    .modal-content p{
+        font-size:1rem;
+        line-height:1.6;
+    }
+
+    .ribbon{
+        font-size:38px;
+    }
 }
 </style>
 </head>
@@ -351,9 +386,9 @@ body{
         <h2>🎉 Życzenia 🎉</h2>
         <p>
             Drogie Raika i Ragi! 💕<br><br>
-            Z okazji Waszych urodzin życzymy Wam<br>
+            Z okazji Waszych urodzin życzymy Wam
             mnóstwa radości, szczęścia i miłości! 🌸<br><br>
-            Niech każdy dzień przynosi Wam uśmiech,<br>
+            Niech każdy dzień przynosi Wam uśmiech,
             a wszystkie marzenia się spełniają! ✨<br><br>
             Sto lat! 🎂💖
         </p>
@@ -367,7 +402,10 @@ function openWishes(){
 }
 
 function closeWishes(e){
-    if(e.target.classList.contains('modal-overlay') || e.target.classList.contains('close-btn')){
+    if(
+        e.target.classList.contains('modal-overlay') ||
+        e.target.classList.contains('close-btn')
+    ){
         document.getElementById('wishesModal').classList.remove('active');
     }
 }
@@ -378,6 +416,7 @@ function closeWishes(e){
 <script>
 document.addEventListener("click", function(){
     const audio = document.getElementById("bgMusic");
+
     if(audio.paused){
         audio.play();
     }
